@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Malla Curricular Interactiva - Contabilidad y Auditoría</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0077b6;
+    }
+    .semestre {
+      border: 2px solid #ade8f4;
+      border-radius: 10px;
+      margin: 20px 0;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    .titulo {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 15px;
+      background: #caf0f8;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer;
+      color: #023e8a;
+    }
+    .materias {
+      display: none;
+      padding: 15px;
+    }
+    ul {
+      padding-left: 25px;
+      margin: 0;
+    }
+    li {
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    li.completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+    .titulo.completo {
+      background: #90e0ef;
+      color: #007f5f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Malla Curricular Interactiva - Contabilidad y Auditoría</h1>
+
+  <div class="semestre" id="semestre1">
+    <div class="titulo" onclick="toggleMaterias(this)">Primer Semestre - Primer Año</div>
+    <div class="materias">
+      <ul>
+        <li onclick="toggleComplete(this)">Lenguaje y Comunicación de Español</li>
+        <li onclick="toggleComplete(this)">Historia de Panamá en el Mundo Global</li>
+        <li onclick="toggleComplete(this)">Lenguaje y Comunicación en Inglés I</li>
+        <li onclick="toggleComplete(this)">Sociedad, Medio Ambiente y Desarrollo</li>
+        <li onclick="toggleComplete(this)">Normas Internacionales de Información Financiera</li>
+        <li onclick="toggleComplete(this)">Sistema de Información Contable I</li>
+        <li onclick="toggleComplete(this)">Principios de Contabilidad I</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="semestre" id="semestre2">
+    <div class="titulo" onclick="toggleMaterias(this)">Segundo Semestre - Primer Año</div>
+    <div class="materias">
+      <ul>
+        <li onclick="toggleComplete(this)">Geografía de Panamá</li>
+        <li onclick="toggleComplete(this)">Sistema de Información Contable II</li>
+        <li onclick="toggleComplete(this)">Principios de Contabilidad II</li>
+        <li onclick="toggleComplete(this)">Normas Internacionales de Auditoría</li>
+        <li onclick="toggleComplete(this)">Matemáticas</li>
+        <li onclick="toggleComplete(this)">Motivación y Liderazgo</li>
+        <li onclick="toggleComplete(this)">Inglés</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Copia y pega más bloques como estos con id="semestre3", etc. -->
+
+  <script>
+    // Mostrar y ocultar materias
+    function toggleMaterias(element) {
+      const materias = element.nextElementSibling;
+      materias.style.display = materias.style.display === "block" ? "none" : "block";
+    }
+
+    // Tachar y guardar progreso
+    function toggleComplete(item) {
+      item.classList.toggle("completed");
+      saveProgress();
+      checkSemesterComplete(item.closest('.semestre'));
+    }
+
+    // Guardar progreso en localStorage
+    function saveProgress() {
+      const data = {};
+      document.querySelectorAll('.semestre').forEach((semestre, sIndex) => {
+        const materias = semestre.querySelectorAll('li');
+        data["semestre" + sIndex] = Array.from(materias).map(m => m.classList.contains('completed'));
+      });
+      localStorage.setItem("mallaProgreso", JSON.stringify(data));
+    }
+
+    // Cargar progreso desde localStorage
+    function loadProgress() {
+      const data = JSON.parse(localStorage.getItem("mallaProgreso"));
+      if (!data) return;
+      document.querySelectorAll('.semestre').forEach((semestre, sIndex) => {
+        const materias = semestre.querySelectorAll('li');
+        materias.forEach((m, i) => {
+          if (data["semestre" + sIndex] && data["semestre" + sIndex][i]) {
+            m.classList.add('completed');
+          }
+        });
+        checkSemesterComplete(semestre);
+      });
+    }
+
+    // Marcar semestre completo si todas las materias lo están
+    function checkSemesterComplete(semestre) {
+      const titulo = semestre.querySelector('.titulo');
+      const materias = semestre.querySelectorAll('li');
+      const completadas = semestre.querySelectorAll('li.completed');
+      if (materias.length && materias.length === completadas.length) {
+        titulo.classList.add('completo');
+        titulo.innerHTML = titulo.innerHTML.includes('✅ COMPLETO') ? titulo.innerHTML : '✅ COMPLETO - ' + titulo.innerHTML;
+      } else {
+        titulo.classList.remove('completo');
+        titulo.innerHTML = titulo.innerHTML.replace('✅ COMPLETO - ', '');
+      }
+    }
+
+    // Cargar progreso al abrir
+    loadProgress();
+  </script>
+
+</body>
+</html>
