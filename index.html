@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Malla Curricular Interactiva - Contabilidad y Auditoría</title>
+  <title>Malla Curricular Contabilidad y Auditoría</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,134 +14,96 @@
       color: #0077b6;
     }
     .semestre {
-      border: 2px solid #ade8f4;
-      border-radius: 10px;
+      padding: 15px;
       margin: 20px 0;
-      background: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      border-radius: 10px;
     }
     .titulo {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
-      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .materia {
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 8px;
       background: #caf0f8;
-      border-radius: 10px 10px 0 0;
       cursor: pointer;
-      color: #023e8a;
+      transition: all 0.3s;
     }
-    .materias {
-      display: none;
-      padding: 15px;
-    }
-    ul {
-      padding-left: 25px;
-      margin: 0;
-    }
-    li {
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    li.completed {
+    .materia.completada {
+      background: #b7e4c7;
       text-decoration: line-through;
-      color: #999;
-    }
-    .titulo.completo {
-      background: #90e0ef;
-      color: #007f5f;
+      color: #555;
     }
   </style>
 </head>
 <body>
 
-  <h1>Malla Curricular Interactiva - Contabilidad y Auditoría</h1>
+  <h1>Malla Curricular Contabilidad y Auditoría</h1>
 
-  <div class="semestre" id="semestre1">
-    <div class="titulo" onclick="toggleMaterias(this)">Primer Semestre - Primer Año</div>
-    <div class="materias">
-      <ul>
-        <li onclick="toggleComplete(this)">Lenguaje y Comunicación de Español</li>
-        <li onclick="toggleComplete(this)">Historia de Panamá en el Mundo Global</li>
-        <li onclick="toggleComplete(this)">Lenguaje y Comunicación en Inglés I</li>
-        <li onclick="toggleComplete(this)">Sociedad, Medio Ambiente y Desarrollo</li>
-        <li onclick="toggleComplete(this)">Normas Internacionales de Información Financiera</li>
-        <li onclick="toggleComplete(this)">Sistema de Información Contable I</li>
-        <li onclick="toggleComplete(this)">Principios de Contabilidad I</li>
-      </ul>
-    </div>
+  <div class="semestre" style="background:#e0fbfc">
+    <div class="titulo">Segundo Semestre de Segundo Año</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Intermedia II</div>
+    <div class="materia" onclick="completar(this)">Metodología de la Investigación (Peritaje Contable)</div>
+    <div class="materia" onclick="completar(this)">Procesos Administrativos</div>
+    <div class="materia" onclick="completar(this)">Presupuesto Operativo y Financiero</div>
+    <div class="materia" onclick="completar(this)">Prevención y Detección del Fraude Financiero</div>
+    <div class="materia" onclick="completar(this)">Estadística Aplicada a la Auditoría</div>
+    <div class="materia" onclick="completar(this)">La Economía de la Empresa</div>
   </div>
 
-  <div class="semestre" id="semestre2">
-    <div class="titulo" onclick="toggleMaterias(this)">Segundo Semestre - Primer Año</div>
-    <div class="materias">
-      <ul>
-        <li onclick="toggleComplete(this)">Geografía de Panamá</li>
-        <li onclick="toggleComplete(this)">Sistema de Información Contable II</li>
-        <li onclick="toggleComplete(this)">Principios de Contabilidad II</li>
-        <li onclick="toggleComplete(this)">Normas Internacionales de Auditoría</li>
-        <li onclick="toggleComplete(this)">Matemáticas</li>
-        <li onclick="toggleComplete(this)">Motivación y Liderazgo</li>
-        <li onclick="toggleComplete(this)">Inglés</li>
-      </ul>
-    </div>
+  <div class="semestre" style="background:#fde2e4">
+    <div class="titulo">Primer Semestre de Tercer Año</div>
+    <div class="materia" onclick="completar(this)">Contabilidad de Costos</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Fiscal</div>
+    <div class="materia" onclick="completar(this)">Auditoría Operacional y de Proceso</div>
+    <div class="materia" onclick="completar(this)">Fundamento de Derecho Comercial y Tributario</div>
+    <div class="materia" onclick="completar(this)">Análisis Económico Empresarial</div>
+    <div class="materia" onclick="completar(this)">Análisis e Interpretación de NIIF y PYMES</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Superior I</div>
   </div>
 
-  <!-- Copia y pega más bloques como estos con id="semestre3", etc. -->
+  <div class="semestre" style="background:#e4c1f9">
+    <div class="titulo">Segundo Semestre de Tercer Año</div>
+    <div class="materia" onclick="completar(this)">Análisis de Costos</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Superior II</div>
+    <div class="materia" onclick="completar(this)">Diseño e Instalación de Sistema de Contabilidad</div>
+    <div class="materia" onclick="completar(this)">Auditoría Fiscal</div>
+    <div class="materia" onclick="completar(this)">Auditoría Financiera</div>
+    <div class="materia" onclick="completar(this)">Auditoría Especializada</div>
+    <div class="materia" onclick="completar(this)">Evidencias y Pruebas de Auditoría</div>
+  </div>
+
+  <div class="semestre" style="background:#cdeac0">
+    <div class="titulo">Primer Semestre de Cuarto Año</div>
+    <div class="materia" onclick="completar(this)">Historia de las Relaciones de Panamá con EE.UU I</div>
+    <div class="materia" onclick="completar(this)">Contabilidad por Sistemas Informáticos</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Gerencial I</div>
+    <div class="materia" onclick="completar(this)">Análisis e Interpretación de Estados Financieros I</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Gubernamental</div>
+    <div class="materia" onclick="completar(this)">Auditoría de Sistema</div>
+  </div>
+
+  <div class="semestre" style="background:#ffc8dd">
+    <div class="titulo">Segundo Semestre de Cuarto Año</div>
+    <div class="materia" onclick="completar(this)">Historia de las Relaciones de Panamá con EE.UU II</div>
+    <div class="materia" onclick="completar(this)">Contabilidad Gerencial II</div>
+    <div class="materia" onclick="completar(this)">Análisis e Interpretación de Estados Financieros II</div>
+    <div class="materia" onclick="completar(this)">Auditoría de Datos Digitalizados</div>
+    <div class="materia" onclick="completar(this)">Fundamentos de Auditoría Forense</div>
+    <div class="materia" onclick="completar(this)">Auditoría Gubernamental</div>
+    <div class="materia" onclick="completar(this)">Tesis de Grado</div>
+    <div class="materia" onclick="completar(this)">Examen de Grado</div>
+  </div>
+
+  <!-- Agrega aquí los semestres que faltaban usando mismo formato -->
 
   <script>
-    // Mostrar y ocultar materias
-    function toggleMaterias(element) {
-      const materias = element.nextElementSibling;
-      materias.style.display = materias.style.display === "block" ? "none" : "block";
+    function completar(elemento) {
+      elemento.classList.toggle("completada");
     }
-
-    // Tachar y guardar progreso
-    function toggleComplete(item) {
-      item.classList.toggle("completed");
-      saveProgress();
-      checkSemesterComplete(item.closest('.semestre'));
-    }
-
-    // Guardar progreso en localStorage
-    function saveProgress() {
-      const data = {};
-      document.querySelectorAll('.semestre').forEach((semestre, sIndex) => {
-        const materias = semestre.querySelectorAll('li');
-        data["semestre" + sIndex] = Array.from(materias).map(m => m.classList.contains('completed'));
-      });
-      localStorage.setItem("mallaProgreso", JSON.stringify(data));
-    }
-
-    // Cargar progreso desde localStorage
-    function loadProgress() {
-      const data = JSON.parse(localStorage.getItem("mallaProgreso"));
-      if (!data) return;
-      document.querySelectorAll('.semestre').forEach((semestre, sIndex) => {
-        const materias = semestre.querySelectorAll('li');
-        materias.forEach((m, i) => {
-          if (data["semestre" + sIndex] && data["semestre" + sIndex][i]) {
-            m.classList.add('completed');
-          }
-        });
-        checkSemesterComplete(semestre);
-      });
-    }
-
-    // Marcar semestre completo si todas las materias lo están
-    function checkSemesterComplete(semestre) {
-      const titulo = semestre.querySelector('.titulo');
-      const materias = semestre.querySelectorAll('li');
-      const completadas = semestre.querySelectorAll('li.completed');
-      if (materias.length && materias.length === completadas.length) {
-        titulo.classList.add('completo');
-        titulo.innerHTML = titulo.innerHTML.includes('✅ COMPLETO') ? titulo.innerHTML : '✅ COMPLETO - ' + titulo.innerHTML;
-      } else {
-        titulo.classList.remove('completo');
-        titulo.innerHTML = titulo.innerHTML.replace('✅ COMPLETO - ', '');
-      }
-    }
-
-    // Cargar progreso al abrir
-    loadProgress();
   </script>
 
 </body>
