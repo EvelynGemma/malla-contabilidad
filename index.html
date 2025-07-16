@@ -1,149 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>Malla Curricular - Contabilidad y Auditoría</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f8ff;
-      color: #333;
+      background: #f4f8fb;
+      margin: 0;
       padding: 20px;
     }
-    h1 {
-      text-align: center;
-      color: #0077b6;
-      margin-bottom: 40px;
+
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
     }
+
     .semestre {
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 12px;
+      flex: 0 0 auto;
+      background: #e0f2f1;
+      border-radius: 15px;
+      padding: 10px;
+      min-width: 200px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .titulo {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .materia {
-      display: inline-block;
-      padding: 10px 15px;
-      margin: 6px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
+
+    .semestre h3 {
       text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #004d40;
     }
-    .materia.completada {
-      background: #b7e4c7;
-      text-decoration: line-through;
-      color: #444;
+
+    .materia {
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .cursada {
+      background: #a8d0f0;
+      color: #083358;
+    }
+
+    .disponible {
+      background: #c9ebf6;
+      color: #045e72;
+    }
+
+    .bloqueada {
+      background: #e0e0e0;
+      color: #777;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
-  <h1>Malla Curricular Contabilidad y Auditoría</h1>
+<h2>Malla Curricular - Contabilidad y Auditoría</h2>
+<div class="container" id="mallaContainer"></div>
 
-  <!-- PRIMER SEMESTRE -->
-  <div class="semestre" style="background:#caf0f8">
-    <div class="titulo">1° Semestre - Primer Año</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Lenguaje y Comunicación de Español</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Historia de Panamá en el Mundo Global</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Lenguaje y Comunicación en Inglés I</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Sociedad, Medio Ambiente y Desarrollo</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Normas Internacionales de Información Financiera</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Sistema de Información Contable I</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Principios de Contabilidad I</div>
-  </div>
+<script>
+  const materias = {
+    "1": [
+      { codigo: "22472", nombre: "Lenguaje y Comunicación de Español" },
+      { codigo: "22473", nombre: "Historia de Panamá en el Mundo Global" },
+      { codigo: "22475", nombre: "Lenguaje y Comunicación en Inglés I" },
+      { codigo: "22477", nombre: "Sociedad, Medio Ambiente y Desarrollo" },
+      { codigo: "30938", nombre: "NIIF" },
+      { codigo: "30939", nombre: "Sist. Información Contable I" },
+      { codigo: "30940", nombre: "Principios de Contabilidad I" }
+    ],
+    "2": [
+      { codigo: "22474", nombre: "Geografía de Panamá" },
+      { codigo: "30941", nombre: "Sist. Información Contable II", prereq: ["30939"] },
+      { codigo: "30942", nombre: "Principios de Contabilidad II", prereq: ["30940"] },
+      { codigo: "30943", nombre: "NIA" },
+      { codigo: "30944", nombre: "Matemáticas" },
+      { codigo: "30945", nombre: "Motivación y Liderazgo" },
+      { codigo: "30946", nombre: "Inglés" }
+    ],
+    // Continúa con los semestres 3 a 8 siguiendo el mismo patrón…
+  };
 
-  <!-- SEGUNDO SEMESTRE -->
-  <div class="semestre" style="background:#e0fbfc">
-    <div class="titulo">2° Semestre - Primer Año</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Geografía de Panamá</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Sistema de Información Contable II</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Principios de Contabilidad II</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Normas Internacionales de Auditoría</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Matemáticas</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Motivación y Liderazgo</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Inglés</div>
-  </div>
+  const completadas = new Set(JSON.parse(localStorage.getItem("completadas") || "[]"));
 
-  <!-- TERCER SEMESTRE -->
-  <div class="semestre" style="background:#fde2e4">
-    <div class="titulo">3° Semestre - Segundo Año</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Contabilidad Intermedia I</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Derecho Procesal y Laboral</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Teoría de la Administración</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Procedimientos y Controles Contables</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Matemática Financiera Aplicada</div>
-    <div class="materia" style="background:#facbd0" onclick="completar(this)">Metodología de la Investigación Contable</div>
-  </div>
+  function tieneRequisitos(materia) {
+    if (!materia.prereq) return true;
+    return materia.prereq.every(pr => completadas.has(pr));
+  }
 
-  <!-- CUARTO SEMESTRE -->
-  <div class="semestre" style="background:#ffc8dd">
-    <div class="titulo">4° Semestre - Segundo Año</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Contabilidad Intermedia II</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Metodología de la Investigación (Peritaje Contable)</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Procesos Administrativos</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Presupuesto Operativo y Financiero</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Prevención y Detección del Fraude Financiero</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">Estadística Aplicada a la Auditoría</div>
-    <div class="materia" style="background:#fdbfcf" onclick="completar(this)">La Economía de la Empresa</div>
-  </div>
+  function guardarProgreso() {
+    localStorage.setItem("completadas", JSON.stringify([...completadas]));
+  }
 
-  <!-- QUINTO SEMESTRE -->
-  <div class="semestre" style="background:#e4c1f9">
-    <div class="titulo">5° Semestre - Tercer Año</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Contabilidad de Costos</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Contabilidad Fiscal</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Auditoría Operacional y de Proceso</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Fundamento de Derecho Comercial y Tributario</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Análisis Económico Empresarial</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Análisis e Interpretación de NIIF y PYMES</div>
-    <div class="materia" style="background:#d8aef8" onclick="completar(this)">Contabilidad Superior I</div>
-  </div>
+  function renderizar() {
+    const contenedor = document.getElementById("mallaContainer");
+    contenedor.innerHTML = "";
 
-  <!-- SEXTO SEMESTRE -->
-  <div class="semestre" style="background:#cdeac0">
-    <div class="titulo">6° Semestre - Tercer Año</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Análisis de Costos</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Contabilidad Superior II</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Diseño e Instalación de Sistema de Contabilidad</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Auditoría Fiscal</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Auditoría Financiera</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Auditoría Especializada</div>
-    <div class="materia" style="background:#bfe2ae" onclick="completar(this)">Evidencias y Pruebas de Auditoría</div>
-  </div>
+    for (const [semestre, lista] of Object.entries(materias)) {
+      const col = document.createElement("div");
+      col.className = "semestre";
+      col.innerHTML = `<h3>Semestre ${semestre}</h3>`;
 
-  <!-- SEPTIMO SEMESTRE -->
-    <div class="semestre" style="background:#caf0f8">
-    <div class="titulo">7° Semestre - Cuarto Año</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Historia de las Relaciones de Panamá con los Estados Unidos I</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Contabilidad por Sistemas Informaticos</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Contabilidad Gerencial I</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Análisis e Interpretación de Estados Financieros I</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Contabilidad Gubernamental</div>
-    <div class="materia" style="background:#ade8f4" onclick="completar(this)">Auditoría de Sistema</div>
-    <div clas
-  </div>
+      lista.forEach(materia => {
+        const div = document.createElement("div");
+        div.classList.add("materia");
 
-  <!-- OCTAVO SEMESTRE -->
-  <div class="semestre" style="background:#e0fbfc">
-    <div class="titulo">8° Semestre - Cuarto Año</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Historia de las Relaciones de Panamá con los Estados Unidos II</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Contabilidad Gerencial II</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Análisis e Interpretación de Estados Financieros II</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Auditoría de Datos Digitalizados</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Fundamentos de Auditoría Forense</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Auditoría Gubernamental</div>
-    <div class="materia" style="background:#cdeefa" onclick="completar(this)">Tesis o Examen de Grado</div>
-  </div>
-      
-  <script>
-    function completar(elemento) {
-      elemento.classList.toggle("completada");
+        const aprobada = completadas.has(materia.codigo);
+        const desbloqueada = tieneRequisitos(materia);
+
+        if (aprobada) div.classList.add("cursada");
+        else if (desbloqueada) div.classList.add("disponible");
+        else div.classList.add("bloqueada");
+
+        div.innerText = materia.nombre;
+        div.onclick = () => {
+          if (!completadas.has(materia.codigo)) {
+            completadas.add(materia.codigo);
+          } else {
+            completadas.delete(materia.codigo);
+          }
+          guardarProgreso();
+          renderizar();
+        };
+
+        col.appendChild(div);
+      });
+
+      contenedor.appendChild(col);
     }
-  </script>
+  }
+
+  renderizar();
+</script>
 
 </body>
 </html>
