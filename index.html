@@ -5,49 +5,66 @@
   <title>Malla Curricular - Contabilidad y Auditoría</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f8fb;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f6fb;
       margin: 0;
       padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004d61;
+      margin-bottom: 30px;
     }
 
     .container {
       display: flex;
       gap: 20px;
-      flex-wrap: nowrap;
       overflow-x: auto;
+      padding-bottom: 20px;
     }
 
     .semestre {
       flex: 0 0 auto;
-      background: #e0f2f1;
+      background: #d0ecf4;
       border-radius: 15px;
       padding: 10px;
-      min-width: 200px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      min-width: 220px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .semestre:hover {
+      transform: translateY(-5px);
     }
 
     .semestre h3 {
       text-align: center;
       font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: #004d40;
+      margin-bottom: 12px;
+      color: #023b4d;
     }
 
     .materia {
       padding: 10px;
       margin: 6px 0;
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       cursor: pointer;
       text-align: center;
-      transition: background 0.3s, color 0.3s;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      user-select: none;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .materia:hover {
+      transform: scale(1.03);
     }
 
     .cursada {
       background: #a8d0f0;
       color: #083358;
+      text-decoration: line-through;
     }
 
     .disponible {
@@ -74,7 +91,7 @@
       { codigo: "22473", nombre: "Historia de Panamá en el Mundo Global" },
       { codigo: "22475", nombre: "Lenguaje y Comunicación en Inglés I" },
       { codigo: "22477", nombre: "Sociedad, Medio Ambiente y Desarrollo" },
-      { codigo: "30938", nombre: "NIIF" },
+      { codigo: "30938", nombre: "Normas Int. de Información Financiera" },
       { codigo: "30939", nombre: "Sist. Información Contable I" },
       { codigo: "30940", nombre: "Principios de Contabilidad I" }
     ],
@@ -82,12 +99,65 @@
       { codigo: "22474", nombre: "Geografía de Panamá" },
       { codigo: "30941", nombre: "Sist. Información Contable II", prereq: ["30939"] },
       { codigo: "30942", nombre: "Principios de Contabilidad II", prereq: ["30940"] },
-      { codigo: "30943", nombre: "NIA" },
+      { codigo: "30943", nombre: "Normas Int. de Auditoría" },
       { codigo: "30944", nombre: "Matemáticas" },
       { codigo: "30945", nombre: "Motivación y Liderazgo" },
       { codigo: "30946", nombre: "Inglés" }
     ],
-    // Continúa con los semestres 3 a 8 siguiendo el mismo patrón…
+    "3": [
+      { codigo: "30947", nombre: "Contabilidad Intermedia I", prereq: ["30940", "30942"] },
+      { codigo: "30948", nombre: "Derecho Procesal y Laboral" },
+      { codigo: "30949", nombre: "Teoría de la Administración" },
+      { codigo: "30950", nombre: "Procedimientos y Controles Contables" },
+      { codigo: "30951", nombre: "Matemática Financiera Aplicada" },
+      { codigo: "30952", nombre: "Metodología de la Investigacón Contable" },
+      { codigo: "30987", nombre: "Optativa: Auditoría Externa" }
+    ],
+    "4": [
+      { codigo: "30953", nombre: "Contabilidad Intermedia II", prereq: ["30940", "30942", "30947"] },
+      { codigo: "30954", nombre: "Investigación (Peritaje Contable)", prereq: ["30952"] },
+      { codigo: "30955", nombre: "Procesos Administrativos" },
+      { codigo: "30956", nombre: "Presupuesto Operativo y Financiero" },
+      { codigo: "30957", nombre: "Prevención del Fraude Financiero" },
+      { codigo: "30958", nombre: "Estadística Aplicada" },
+      { codigo: "30959", nombre: "Economía de la Empresa" }
+    ],
+    "5": [
+      { codigo: "30960", nombre: "Contabilidad de Costos", prereq: ["30940", "30942", "30947", "30953"] },
+      { codigo: "30961", nombre: "Contabilidad Fiscal" },
+      { codigo: "30962", nombre: "Auditoría Operacional y de Proceso" },
+      { codigo: "30963", nombre: "Derecho Comercial y Tributario" },
+      { codigo: "30964", nombre: "Análisis Económico Empresarial" },
+      { codigo: "30965", nombre: "Análisis NIIF y PYMES", prereq: ["30938"] },
+      { codigo: "30966", nombre: "Contabilidad Superior I", prereq: ["30940", "30942", "30947", "30953"] }
+    ],
+    "6": [
+      { codigo: "30967", nombre: "Análisis de Costos", prereq: ["30960", "30966"] },
+      { codigo: "30968", nombre: "Contabilidad Superior II", prereq: ["30960", "30966"] },
+      { codigo: "30969", nombre: "Diseño de Sistemas Contables", prereq: ["30939", "30941"] },
+      { codigo: "30970", nombre: "Auditoría Fiscal" },
+      { codigo: "30971", nombre: "Auditoría Financiera" },
+      { codigo: "30972", nombre: "Auditoría Especializada" },
+      { codigo: "30973", nombre: "Evidencias y Pruebas de Auditoría" }
+    ],
+    "7": [
+      { codigo: "27406", nombre: "Relaciones de Panamá y EE.UU. I" },
+      { codigo: "30974", nombre: "Contabilidad por Sistemas Informáticos", prereq: ["30939", "30941", "30969"] },
+      { codigo: "30975", nombre: "Contabilidad Gerencial I", prereq: ["30940", "30942", "30947", "30953", "30960", "30966", "30967", "30968"] },
+      { codigo: "30976", nombre: "Análisis Estados Financieros I", prereq: ["30940", "30942", "30947", "30953", "30960", "30966", "30967", "30968"] },
+      { codigo: "30977", nombre: "Contabilidad Gubernamental" },
+      { codigo: "30978", nombre: "Auditoría de Sistemas", prereq: ["30939", "30941"] }
+    ],
+    "8": [
+      { codigo: "27408", nombre: "Relaciones de Panamá y EE.UU. II", prereq: ["27406"] },
+      { codigo: "30979", nombre: "Contabilidad Gerencial II", prereq: ["30940"] },
+      { codigo: "30980", nombre: "Análisis Estados Financieros II", prereq: ["30940"] },
+      { codigo: "30981", nombre: "Auditoría de Datos Digitalizados", prereq: ["30939"] },
+      { codigo: "30982", nombre: "Auditoría Forense" },
+      { codigo: "30983", nombre: "Auditoría Gubernamental" },
+      { codigo: "30997", nombre: "Tesis de Grado" },
+      { codigo: "30998", nombre: "Examen de Grado" }
+    ]
   };
 
   const completadas = new Set(JSON.parse(localStorage.getItem("completadas") || "[]"));
