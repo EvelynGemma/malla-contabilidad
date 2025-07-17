@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Malla Curricular - Contabilidad y Auditoría</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -14,22 +15,23 @@
     h2 {
       text-align: center;
       color: #004d61;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
     }
 
     .container {
       display: flex;
+      flex-wrap: wrap;
       gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 20px;
+      justify-content: center;
     }
 
     .semestre {
-      flex: 0 0 auto;
       background: #b0dce8;
       border-radius: 15px;
-      padding: 10px;
-      min-width: 220px;
+      padding: 15px;
+      width: 100%;
+      max-width: 280px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
@@ -41,18 +43,18 @@
     .semestre h3 {
       text-align: center;
       font-size: 1.1rem;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #023b4d;
     }
 
     .materia {
-      padding: 10px;
+      padding: 12px;
       margin: 6px 0;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       cursor: pointer;
       text-align: center;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       user-select: none;
       transition: background 0.3s, color 0.3s, transform 0.2s;
     }
@@ -68,7 +70,7 @@
     }
 
     .disponible {
-      background: #c9ebf6;
+      background: #d8f1fb;
       color: #045e72;
     }
 
@@ -78,26 +80,25 @@
       pointer-events: none;
     }
 
-    /* 🌐 RESPONSIVE (pantallas pequeñas) */
     @media (max-width: 600px) {
       body {
         padding: 10px;
-  }
+      }
 
-     h2 {
-    font-size: 1.2rem;
-  }
+      h2 {
+        font-size: 1.2rem;
+      }
 
-  .semestre {
-    width: 100%;
-    max-width: none;
-  }
+      .semestre {
+        width: 100%;
+        max-width: none;
+      }
 
-  .materia {
-    font-size: 1.05rem;
-    padding: 14px;
-  }
-}
+      .materia {
+        font-size: 1.05rem;
+        padding: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -120,7 +121,7 @@
       { codigo: "22474", nombre: "Geografía de Panamá" },
       { codigo: "30941", nombre: "Sist. Información Contable II", prereq: ["30939"] },
       { codigo: "30942", nombre: "Principios de Contabilidad II", prereq: ["30940"] },
-      { codigo: "30943", nombre: "Normas Int. de Auditoría" },
+      { codigo: "30943", nombre: "Normas Internacionales de Auditoría" },
       { codigo: "30944", nombre: "Matemáticas" },
       { codigo: "30945", nombre: "Motivación y Liderazgo" },
       { codigo: "30946", nombre: "Inglés" }
@@ -131,7 +132,7 @@
       { codigo: "30949", nombre: "Teoría de la Administración" },
       { codigo: "30950", nombre: "Procedimientos y Controles Contables" },
       { codigo: "30951", nombre: "Matemática Financiera Aplicada" },
-      { codigo: "30952", nombre: "Metodología de la Investigacón Contable" },
+      { codigo: "30952", nombre: "Metodología de la Inversión Contable" },
       { codigo: "30987", nombre: "Optativa: Auditoría Externa" }
     ],
     "4": [
